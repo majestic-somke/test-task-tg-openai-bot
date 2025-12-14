@@ -1,15 +1,16 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy import Column, Integer, BigInteger, String, Text, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
 
 
 
 Base = declarative_base()
 
+
 class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    telegram_id = Column(Integer, unique=True, nullable=False)
+    telegram_id = Column(BigInteger, unique=True, nullable=False)  # фикс: BigInteger
     messages = relationship("Message", back_populates="user")
 
 
